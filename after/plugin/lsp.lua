@@ -1,12 +1,16 @@
+local lspconfig = require("lspconfig")
+
 require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
-        "clangd",
     },
-
-	automatic_installation = true,
 }
 
-require("lspconfig").lua_ls.setup {}
-require("lspconfig").clangd.setup {}
+lspconfig.lua_ls.setup {}
+
+require("mason-lspconfig").setup_handlers {
+    function(server)
+        lspconfig[server].setup({})
+    end
+}
