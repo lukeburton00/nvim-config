@@ -25,4 +25,5 @@ usually located at:
 Example:
 
 ```:MasonInstall clangd```
+
 You can now open a C/C++ file and get to work!
