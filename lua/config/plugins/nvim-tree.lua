@@ -5,5 +5,6 @@ return {
   
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "b0o/nvim-tree-preview.lua",
   },  
 }

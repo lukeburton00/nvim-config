@@ -8,6 +8,11 @@ local function my_on_attach(bufnr)
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
 
+  local preview = require('nvim-tree-preview')
+
+  vim.keymap.set('n', '<Tab>', preview.watch, opts 'Preview (Watch)')
+  vim.keymap.set('n', '<Esc>', preview.unwatch, opts 'Close Preview/Unwatch')
+
   -- custom mappings
   vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
   vim.keymap.set('n', '<leader><space>', api.tree.toggle)
