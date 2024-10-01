@@ -27,8 +27,6 @@ require("mason-lspconfig").setup {
     },
 }
 
-lspconfig.lua_ls.setup {}
-
 require("mason-lspconfig").setup_handlers {
     function(server)
         capabilities = lsp_capabilities
