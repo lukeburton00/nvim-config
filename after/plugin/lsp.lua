@@ -19,11 +19,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require("lspconfig")
+local util = require('lspconfig.util')
 
 require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
+        "angularls",
     },
 }
 
@@ -32,6 +34,10 @@ require("mason-lspconfig").setup_handlers {
         capabilities = lsp_capabilities
         lspconfig[server].setup({})
     end
+}
+
+lspconfig.angularls.setup {
+    root_dir = util.root_pattern('angular.json', 'project.json')
 }
 
 local cmp = require("cmp")
@@ -49,6 +55,7 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'buffer' },
     },
 
     mapping = cmp.mapping.preset.insert {
