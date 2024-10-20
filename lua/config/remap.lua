@@ -17,6 +17,8 @@ vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "Q", "<nop>")
 
+vim.keymap.set("n", "U", "<C-r>")
+
 vim.api.nvim_create_autocmd('filetype', {
   pattern = 'netrw',
   desc = 'Better mappings for netrw',
