@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+require("neodev").setup {}
+
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require("lspconfig")
@@ -25,15 +27,21 @@ require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "angularls",
+        "lua_ls",
     },
 }
 
-require("neodev").setup {}
 
 require("mason-lspconfig").setup_handlers {
     function(server)
         capabilities = lsp_capabilities
-        lspconfig[server].setup({})
+        lspconfig[server].setup({
+            settings = {
+                completions = {
+                    callSnippet = "Replace"
+                }
+            }
+        })
     end
 }
 
