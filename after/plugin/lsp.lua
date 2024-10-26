@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require("neodev").setup {}
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 local lspconfig = require("lspconfig")
 local util = require('lspconfig.util')
 
@@ -49,10 +48,16 @@ lspconfig.angularls.setup {
     root_dir = util.root_pattern('angular.json', 'project.json')
 }
 
-local cmp = require("cmp")
 local luasnip = require("luasnip")
-
 luasnip.config.setup {}
+require("luasnip.loaders.from_vscode").lazy_load()
+
+require'luasnip'.filetype_extend("ruby", {"rails"})
+require'luasnip'.filetype_extend("typescript", {"angular"})
+require'luasnip'.filetype_extend("eruby", {"html"})
+require'luasnip'.filetype_extend("eruby", {"ruby"})
+
+local cmp = require("cmp")
 
 cmp.setup {
     snippet = {
