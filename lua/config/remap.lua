@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('filetype', {
   callback = function()
     local bind = function(lhs, rhs)
       vim.keymap.set('n', lhs, rhs, {remap = true, buffer = true})
-    end 
+    end
     -- edit new file
     bind('n', '%')
     -- rename file
