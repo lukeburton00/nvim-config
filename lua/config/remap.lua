@@ -2,8 +2,6 @@ vim.g.mapleader = ' '
 
 vim.keymap.set("n", "<leader>b", "<C-t>")
 
-vim.keymap.set("n", "<leader><space>", vim.cmd.Ex)
-
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -21,17 +19,3 @@ vim.keymap.set("n", "U", "<C-r>")
 
 vim.keymap.set("n", "<leader>co", vim.cmd.copen)
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose)
-
-vim.api.nvim_create_autocmd('filetype', {
-  pattern = 'netrw',
-  desc = 'Better mappings for netrw',
-  callback = function()
-    local bind = function(lhs, rhs)
-      vim.keymap.set('n', lhs, rhs, {remap = true, buffer = true})
-    end
-    -- edit new file
-    bind('n', '%')
-    -- rename file
-    bind('r', 'R')
-  end
-})
