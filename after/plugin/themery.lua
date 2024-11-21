@@ -10,3 +10,5 @@ require("themery").setup({
         }
     }
 })
+
+vim.keymap.set("n", "<leader>th", "<CMD>Themery<CR>")
