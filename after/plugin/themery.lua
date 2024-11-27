@@ -46,7 +46,7 @@ require("themery").setup({
         },
         {
             name = "Lackluster",
-            colorscheme = "lackluster",
+            colorscheme = "lackluster-hack",
         },
     }
 })
