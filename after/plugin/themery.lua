@@ -48,6 +48,10 @@ require("themery").setup({
             name = "Lackluster",
             colorscheme = "lackluster-hack",
         },
+        {
+            name = "No Clown Fiesta",
+            colorscheme = "no-clown-fiesta"
+        }
     }
 })
 

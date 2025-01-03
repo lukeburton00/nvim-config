@@ -4,6 +4,7 @@ return {
     {"marko-cerovac/material.nvim", name = "material"},
     {"rebelot/kanagawa.nvim", name = "kanagawa"},
     {"slugbyte/lackluster.nvim", name = "lackluster"},
+    {"aktersnurra/no-clown-fiesta.nvim", name = "no-clown-fiesta"},
     lazy = false,
     priority = 1000,
 }
