@@ -1,17 +1,10 @@
 return {
-    'hrsh7th/nvim-cmp',
+    'neovim/nvim-lspconfig',
 
     dependencies = {
-        'hrsh7th/nvim-lspconfig',
-        'neovim/nvim-lspconfig',
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
         'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lua',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
-        "rafamadriz/friendly-snippets",
     },
 
     config = function ()
@@ -20,38 +13,35 @@ return {
             callback = function(event)
                 local opts = {buffer = event.buf}
 
-                vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, opts)
-                vim.keymap.set('n', '<leader>ho', function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set('n', '<leader>ws', function() vim.lsp.buf.workspace_symbol() end, opts)
-                vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-                vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-                vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-                vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
-                vim.keymap.set('n', '<leader>rf', function() vim.lsp.buf.references() end, opts)
-                vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set('n', '<leader>hs', function() vim.lsp.buf.signature_help() end, opts)
+                vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+                vim.keymap.set('n', '<leader>ho', vim.lsp.buf.hover, opts)
+                vim.keymap.set('n', '<leader>ws', vim.lsp.buf.workspace_symbol, opts)
+                vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
+                vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
+                vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
+                vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+                vim.keymap.set('n', '<leader>rf', vim.lsp.buf.references, opts)
+                vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+                vim.keymap.set('n', '<leader>hs', vim.lsp.buf.signature_help, opts)
             end,
         })
 
-        require("neodev").setup {}
-
-        local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lspconfig = require("lspconfig")
         local util = require('lspconfig.util')
 
         require("mason").setup()
         require("mason-lspconfig").setup {
+            automatic_installation = false,
             ensure_installed = {
                 "angularls",
                 "lua_ls",
             },
         }
 
-
         require("mason-lspconfig").setup_handlers {
             function(server)
-                capabilities = lsp_capabilities
                 lspconfig[server].setup({
+                    capabilities = require('cmp_nvim_lsp').default_capabilities(),
                     settings = {
                         completions = {
                             callSnippet = "Replace"
@@ -63,56 +53,6 @@ return {
 
         lspconfig.angularls.setup {
             root_dir = util.root_pattern('angular.json', 'project.json')
-        }
-
-        local luasnip = require("luasnip")
-        luasnip.config.setup {}
-        require("luasnip.loaders.from_vscode").lazy_load()
-
-        require'luasnip'.filetype_extend("ruby", {"rails"})
-        require'luasnip'.filetype_extend("typescript", {"angular"})
-        require'luasnip'.filetype_extend("eruby", {"html"})
-        require'luasnip'.filetype_extend("eruby", {"ruby"})
-
-        local cmp = require("cmp")
-
-        cmp.setup {
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end
-            },
-
-            sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-                { name = 'buffer' },
-            },
-
-            mapping = cmp.mapping.preset.insert {
-                ['<CR>'] = cmp.mapping.confirm {
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                },
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' }),
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' }),
-            },
         }
     end
 }
