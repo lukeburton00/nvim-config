@@ -26,4 +26,4 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.showmode = false
 
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.clipboard = "unnamedplus"
