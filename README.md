@@ -6,9 +6,10 @@ This is my personal Neovim configuration.
 
 This configuration requires the following dependencies to be installed:
 
-- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to `find`.
-- [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches your current directory for a regex pattern.
-- [zig](https://ziglang.org/download/): A general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.
+- fd
+- ripgrep
+- cmake
+- zig
 
 ## Setup Instructions
 
