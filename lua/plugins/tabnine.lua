@@ -1,6 +1,15 @@
+
+local function tabnine_build_path()
+    if vim.uv.os_uname().sysname == "Windows_NT" then
+        return "pwsh.exe -file .\\dl_binaries.ps1"
+    else
+        return "./dl_binaries.sh"
+    end
+end
+
 return {
     'codota/tabnine-nvim',
-    build = './dl_binaries.sh',
+    build = tabnine_build_path(),
 
     config = function ()
         require('tabnine').setup({
