@@ -1,4 +1,5 @@
 return {
+ 
     "nvim-telescope/telescope.nvim",
     event = "BufReadPre",
     dependencies = {
@@ -35,6 +36,7 @@ return {
             { "<C-p>", builtin.lsp_document_symbols, desc = "Document Symbols" },
             { "<leader>l", builtin.live_grep, desc = "Live Grep" },
             { "<leader>hh", builtin.help_tags, desc = "Help Tags" },
+            { "<leader>hk", builtin.keymaps, desc = "Keymaps" },
         }
     end
 }
