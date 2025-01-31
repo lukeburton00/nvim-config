@@ -27,32 +27,33 @@ return {
         })
 
         local lspconfig = require("lspconfig")
-        local util = require('lspconfig.util')
 
         require("mason").setup()
         require("mason-lspconfig").setup {
             automatic_installation = false,
             ensure_installed = {
-                "angularls",
                 "lua_ls",
             },
         }
 
         require("mason-lspconfig").setup_handlers {
             function(server)
-                lspconfig[server].setup({
+                local opts = {
                     capabilities = require('cmp_nvim_lsp').default_capabilities(),
                     settings = {
                         completions = {
                             callSnippet = "Replace"
                         }
                     }
-                })
-            end
-        }
+                }
 
-        lspconfig.angularls.setup {
-            root_dir = util.root_pattern('angular.json', 'project.json')
+                if server == "angularls" then
+                    local util = require('lspconfig.util')
+                    opts.root_dir = util.root_pattern('angular.json', 'project.json')
+                end
+
+                lspconfig[server].setup(opts)
+            end
         }
     end
 }
