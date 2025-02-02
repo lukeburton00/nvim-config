@@ -5,7 +5,6 @@ return {
 
     config = function()
         require("no-clown-fiesta").setup({
-            transparent = true,
             styles = {
                 type = { bold = true },
                 lsp = { underline = false },
