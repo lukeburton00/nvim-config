@@ -1,50 +1,52 @@
 return {
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
 
-    dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lua',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
-        "rafamadriz/friendly-snippets",
-    },
+    version = '*',
+    opts = {
+        keymap = {
+            preset = 'enter',
 
-    config = function ()
-        local luasnip = require("luasnip")
-        luasnip.config.setup()
+            ['<Tab>'] = { 'select_next' },
+            ['<S-Tab>'] = { 'select_prev' },
+        },
 
-        require("luasnip.loaders.from_vscode").lazy_load()
-        luasnip.filetype_extend("ruby", {"rails"})
-        luasnip.filetype_extend("typescript", {"angular"})
-        luasnip.filetype_extend("eruby", {"html"})
-        luasnip.filetype_extend("eruby", {"ruby"})
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = 'mono'
+        },
 
-        local cmp = require("cmp")
-        cmp.setup {
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+
+        completion = {
+            list = {
+                selection = {
+                    preselect = false,
+                    auto_insert = false
+                }
             },
 
-            sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-                { name = 'buffer' },
-                { name = 'path' },
-                { name = 'lazydev' },
-            }),
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 500,
+                window = { border = 'padded' }
+            },
 
-            mapping = cmp.mapping.preset.insert({
-                ['<CR>'] = cmp.mapping.confirm {select = true},
-                ['<Tab>'] = cmp.mapping.select_next_item(),
-                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                ['<C-e>'] = cmp.mapping.abort(),
-                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                ['<C-u>'] = cmp.mapping.scroll_docs(4),
-            }),
-        }
-    end
+            ghost_text = {
+                enabled = true
+            }
+        },
+
+        signature = {
+            enabled = true,
+            window = {
+                border = 'padded',
+                show_documentation = true
+            }
+        },
+    },
+
+    opts_extend = { "sources.default" }
 }

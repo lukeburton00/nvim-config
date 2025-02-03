@@ -4,7 +4,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        'hrsh7th/cmp-nvim-lsp',
+        "saghen/blink.cmp"
     },
 
     config = function ()
@@ -16,10 +16,11 @@ return {
             },
         }
 
+
         require("mason-lspconfig").setup_handlers {
             function(server)
                 local opts = {
-                    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+                    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
                 }
 
                 if server == "angularls" then
@@ -30,6 +31,6 @@ return {
                 local lspconfig = require("lspconfig")
                 lspconfig[server].setup(opts)
             end
-            }
-        end
+        }
+    end
 }
