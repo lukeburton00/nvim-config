@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-    event = 'BufEnter',
+    event = 'BufReadPost',
 
     config = function ()
         require'nvim-treesitter.configs'.setup{
