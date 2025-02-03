@@ -1,6 +1,5 @@
 return {
     "nvim-telescope/telescope.nvim",
-    event = "BufReadPre",
     dependencies = {
         "nvim-lua/plenary.nvim",
         {
@@ -8,6 +7,8 @@ return {
             build = "make",
         },
     },
+
+    event = 'BufReadPost',
 
     config = function()
         require("telescope").setup({

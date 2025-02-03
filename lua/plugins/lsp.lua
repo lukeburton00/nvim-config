@@ -1,11 +1,12 @@
 return {
     'neovim/nvim-lspconfig',
-
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "saghen/blink.cmp"
     },
+
+    event = "BufReadPost",
 
     config = function ()
         require("mason").setup()
