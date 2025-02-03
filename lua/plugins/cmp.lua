@@ -1,15 +1,13 @@
 return {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
+
     event = 'VeryLazy',
 
     version = '*',
     opts = {
         keymap = {
             preset = 'enter',
-
-            ['<Tab>'] = { 'select_next' },
-            ['<S-Tab>'] = { 'select_prev' },
         },
 
         appearance = {
