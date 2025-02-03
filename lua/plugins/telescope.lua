@@ -1,5 +1,4 @@
 return {
- 
     "nvim-telescope/telescope.nvim",
     event = "BufReadPre",
     dependencies = {
