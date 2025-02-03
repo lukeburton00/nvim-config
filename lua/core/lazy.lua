@@ -20,6 +20,7 @@ require("lazy").setup({
     },
 
     defaults = { lazy = true },
+    ui = { border = 'rounded' },
     performance = {
         rtp = {
             disabled_plugins = {
