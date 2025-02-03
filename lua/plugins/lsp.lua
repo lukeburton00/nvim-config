@@ -16,7 +16,6 @@ return {
             },
         }
 
-
         require("mason-lspconfig").setup_handlers {
             function(server)
                 local opts = {
