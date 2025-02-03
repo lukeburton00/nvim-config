@@ -6,6 +6,8 @@ return {
         "nvim-telescope/telescope.nvim",
     },
 
+    event = 'VeryLazy',
+
     config = function ()
         local harpoon = require("harpoon")
 
