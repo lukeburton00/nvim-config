@@ -6,7 +6,7 @@ return {
         "saghen/blink.cmp"
     },
 
-    event = "BufReadPost",
+    event = "VeryLazy",
 
     config = function ()
         require("mason").setup()

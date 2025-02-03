@@ -1,7 +1,7 @@
 return {
     'echasnovski/mini.nvim',
     version = '*',
-    lazy = false,
+    event = 'VeryLazy',
 
     config = function ()
         -- Modules

@@ -1,7 +1,7 @@
 return {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
-    event = 'InsertCharPre',
+    event = 'VeryLazy',
 
     version = '*',
     opts = {
