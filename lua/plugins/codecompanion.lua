@@ -4,6 +4,7 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
     },
+    event = 'BufReadPost',
 
     config = function ()
         require("codecompanion").setup({
