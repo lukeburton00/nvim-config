@@ -8,8 +8,6 @@ return {
         },
     },
 
-    event = 'BufReadPost',
-
     config = function()
         require("telescope").setup({
             pickers = {
