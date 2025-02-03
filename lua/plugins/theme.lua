@@ -12,6 +12,6 @@ return {
             }
         })
 
-        vim.cmd("colorscheme no-clown-fiesta")
+        vim.cmd.colorscheme("no-clown-fiesta")
     end
 }
