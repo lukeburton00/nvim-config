@@ -32,5 +32,10 @@ return {
                 lspconfig[server].setup(opts)
             end
         }
+
+        local lspconfig = require("lspconfig")
+        lspconfig.sourcekit.setup{
+            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+        }
     end
 }
