@@ -31,6 +31,7 @@ return {
         local builtin = require("telescope.builtin")
         return {
             { "<leader>f", builtin.find_files, desc = "Find Files" },
+            { "<leader>en", function() builtin.find_files { cwd = vim.fn.stdpath("config") } end, desc = "Edit Neovim" },
             { "<C-p>", builtin.lsp_document_symbols, desc = "Document Symbols" },
             { "<leader>l", builtin.live_grep, desc = "Live Grep" },
             { "<leader>hh", builtin.help_tags, desc = "Help Tags" },
