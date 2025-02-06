@@ -19,6 +19,8 @@ vim.keymap.set("n", "U", "<C-r>")
 
 vim.keymap.set("n", "<leader>co", vim.cmd.copen)
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose)
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>")
 
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gws', vim.lsp.buf.workspace_symbol)
