@@ -17,6 +17,7 @@ return {
             },
         }
 
+        local lspconfig = require("lspconfig")
         require("mason-lspconfig").setup_handlers {
             function(server)
                 local opts = {
@@ -28,16 +29,16 @@ return {
                     opts.root_dir = util.root_pattern('angular.json', 'project.json')
                 end
 
-                local lspconfig = require("lspconfig")
                 lspconfig[server].setup(opts)
             end
         }
 
-        local lspconfig = require("lspconfig")
-        lspconfig.sourcekit.setup{
-            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
-            cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" }
-        }
+        if jit.os == "Darwin" then
+            lspconfig.sourcekit.setup{
+                capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
+                cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" }
+            }
+        end
 
     end
 }
