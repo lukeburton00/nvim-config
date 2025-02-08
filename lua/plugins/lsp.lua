@@ -35,7 +35,9 @@ return {
 
         local lspconfig = require("lspconfig")
         lspconfig.sourcekit.setup{
-            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
+            cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" }
         }
+
     end
 }
