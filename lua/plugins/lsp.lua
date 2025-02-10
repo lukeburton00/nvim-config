@@ -33,7 +33,7 @@ return {
             end
         }
 
-        if jit.os == "Darwin" then
+        if jit.os == "OSX" then
             lspconfig.sourcekit.setup{
                 capabilities = require('blink.cmp').get_lsp_capabilities(capabilities),
                 cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" }
