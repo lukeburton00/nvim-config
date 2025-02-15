@@ -46,13 +46,29 @@ return {
                         name = "Bonsai",
                         action = function()
                             if vim.fn.has("win32") == 0 then
-                                vim.cmd("botright split | term cbonsai -l")
+                                local buf = vim.api.nvim_create_buf(false, true)
+                                vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+                                local width = 80
+                                local height = 20
+                                local ui_width = vim.api.nvim_get_option("columns")
+                                local ui_height = vim.api.nvim_get_option("lines")
+                                local row = math.floor((ui_height - height) / 2)
+                                local col = math.floor((ui_width - width) / 2)
+                                local opts = {
+                                    style = 'minimal',
+                                    relative = 'editor',
+                                    width = width,
+                                    height = height,
+                                    row = row,
+                                    col = col
+                                }
+                                local win = vim.api.nvim_open_win(buf, true, opts)
+                                vim.cmd("term cbonsai -l")
                                 vim.cmd("setlocal nonumber norelativenumber")
                             end
                         end,
                         section = "",
                     }
-
                 },
             },
 
