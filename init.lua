@@ -1,3 +1,3 @@
-require("core.opts")
-require("core.remaps")
-require("core.lazy")
+require("config.opts")
+require("config.remaps")
+require("config.lazy")
